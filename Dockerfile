@@ -35,7 +35,7 @@ ENV S6_VERSION="v1.19.1.1" \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 RUN curl -sL https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-amd64.tar.gz \
-    | tar -zx -C
+    | tar -zx -C /
 
 
 # Install Glibc for minio
