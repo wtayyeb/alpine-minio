@@ -9,7 +9,7 @@ ENV SCHEDULER_VOLUME="/opt/scheduler" \
     GID=10003 \
     CONTAINER_NAME="alpine-minio" \
     CONTAINER_AUHTOR="w.tayyeb <w.tayyeb@gmail.com>" \
-    CONTAINER_SUPPORT="https://github.com/wtayyeb/alpine-minio/issues" \
+    CONTAINER_SUPPORT="https://github.com/wtayyeb/alpine-minio/issues"
 
 
 # Install extra package
