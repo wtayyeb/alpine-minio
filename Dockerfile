@@ -51,7 +51,7 @@ RUN apk add --update -t deps wget ca-certificates &&\
 # Install minio software
 ENV APP_HOME="/opt/minio"
 
-RUN mkdir -p ${APP_HOME}/log ${APP_HOME}/conf && \
+RUN mkdir -p ${APP_HOME}/log /data ${APP_HOME}/conf && \
     addgroup -g ${GID} ${GROUP} && \
     adduser -g "${USER} user" -D -h ${APP_HOME} -G ${GROUP} -s /bin/sh -u ${UID} ${USER} && \
     chown -R ${USER}:${GROUP} ${APP_HOME}
@@ -59,5 +59,6 @@ RUN mkdir -p ${APP_HOME}/log ${APP_HOME}/conf && \
 ADD root /
 
 COPY ./docker-entrypoint.sh /usr/bin/
-ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
+ENTRYPOINT []
+
 CMD ["/init"]
