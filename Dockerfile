@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM minio/minio:RELEASE.2017-11-22T19-55-46Z
 MAINTAINER w.tayyeb <w.tayyeb@gmail.com>
 
 # Application settings
@@ -6,10 +6,7 @@ ENV SCHEDULER_VOLUME="/opt/scheduler" \
     USER=minio \
     GROUP=minio \
     UID=10003 \
-    GID=10003 \
-    CONTAINER_NAME="alpine-minio" \
-    CONTAINER_AUHTOR="w.tayyeb <w.tayyeb@gmail.com>" \
-    CONTAINER_SUPPORT="https://github.com/wtayyeb/alpine-minio/issues"
+    GID=10003
 
 
 # Install extra package
@@ -51,23 +48,6 @@ RUN apk add --update -t deps wget ca-certificates &&\
     apk del --purge deps &&\
     rm /tmp/* /var/cache/apk/*
 
-
-# Install minio software
-ENV APP_VERSION="RELEASE.2017-10-27T18-59-02Z" \
-    APP_HOME="/opt/minio" \
-    APP_WEB="https://minio.io/"
-
-RUN mkdir -p ${APP_HOME}/log /data ${APP_HOME}/bin ${APP_HOME}/conf && \
-    curl -f https://dl.minio.io/server/minio/release/linux-amd64/minio.${APP_VERSION} -o ${APP_HOME}/bin/minio && \
-    addgroup -g ${GID} ${GROUP} && \
-    adduser -g "${USER} user" -D -h ${APP_HOME} -G ${GROUP} -s /bin/sh -u ${UID} ${USER}
-
-
 ADD root /
-RUN chmod +x ${APP_HOME}/bin/* &&\
-    chown -R ${USER}:${GROUP} ${APP_HOME}
 
-
-VOLUME ["/data"]
-EXPOSE 9000
 CMD ["/init"]

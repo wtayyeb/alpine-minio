@@ -40,4 +40,4 @@ MINIO_VOLUMES="{{range $i, $containerName := ls "/servers"}}http://{{getv (print
 {{- end }}
 
 
-su minio -c "${APP_HOME}/bin/minio server ${MINIO_VOLUMES}"
+su minio -c "/usr/bin/minio server ${MINIO_VOLUMES}"
