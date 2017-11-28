@@ -2,7 +2,7 @@ version: '2'
 services:
   minio-server:
     tty: true
-    image: goshkob/alpine-minio:latest
+    image: wtayyeb/minio-rancher:latest
     volumes:
       - minio-data:/data/disk0
     ports:
