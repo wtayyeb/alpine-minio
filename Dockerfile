@@ -48,7 +48,16 @@ RUN apk add --update -t deps wget ca-certificates &&\
     apk del --purge deps &&\
     rm /tmp/* /var/cache/apk/*
 
-ADD root /
-COPY docker-entrypoint.sh /usr/bin/
+# Install minio software
+ENV APP_HOME="/opt/minio"
 
+RUN mkdir -p ${APP_HOME}/log ${APP_HOME}/conf && \
+    addgroup -g ${GID} ${GROUP} && \
+    adduser -g "${USER} user" -D -h ${APP_HOME} -G ${GROUP} -s /bin/sh -u ${UID} ${USER} && \
+    chown -R ${USER}:${GROUP} ${APP_HOME}
+
+ADD root /
+
+COPY ./docker-entrypoint.sh /usr/bin/
+ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
 CMD ["/init"]
