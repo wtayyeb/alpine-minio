@@ -49,5 +49,6 @@ RUN apk add --update -t deps wget ca-certificates &&\
     rm /tmp/* /var/cache/apk/*
 
 ADD root /
+COPY docker-entrypoint.sh /usr/bin/
 
 CMD ["/init"]
