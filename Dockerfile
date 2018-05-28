@@ -1,4 +1,4 @@
-FROM minio/minio:RELEASE.2018-03-28T23-45-53Z
+FROM minio/minio:RELEASE.2018-05-25T19-49-13Z
 MAINTAINER w.tayyeb <w.tayyeb@gmail.com>
 
 # Application settings
