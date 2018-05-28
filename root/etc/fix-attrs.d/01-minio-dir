@@ -1,2 +1,1 @@
-/data true minio 0600 0700
-/opt/minio/log false minio 0600 0700
+
